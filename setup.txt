@@ -1,0 +1,98 @@
+#enter project directory
+cd /project
+
+#if you need to create enviroment
+python -m virtualenv surveyNotes
+
+#if enviroment already created you can activate
+.\surveyNotes\Scripts\activate
+
+#if you need to install flask 
+pip install flask
+pip install flask_sqlalchemy
+pip install pytz
+#OR
+pip install -r requirements.txt
+
+
+#set flask app settings
+set FLASK_APP=surveyNotes
+set FLASK_ENV=development
+
+#run flask
+python surveyNotes.py
+#or
+flask run
+
+#in new cmd in svelte directory
+npm run dev
+
+
+localhost:5000
+
+
+
+#####FOR DB
+in main directory
+
+python
+from surveyNotes import db
+from surveyNotes import LastUpdate
+from datetime import datetime
+import pytz
+db.drop_all()
+db.create_all()
+l = LastUpdate(date=datetime.now(pytz.utc))
+db.session.add(l)
+db.session.commit()
+exit()
+
+
+
+
+
+
+
+Installations:
+npm install -D date-picker-svelte
+npm install svelty-picker https://mskocik.github.io/svelty-picker/?ref=madewithsvelte.com
+npm i -D simple-svelte-autocomplete
+npm install svelte-filepond filepond --save https://github.com/pqina/svelte-filepond
+
+
+
+
+
+
+
+#########
+DOCKER
+########
+make sure right settings on surveyNotes.py app.run
+in virtual env
+
+docker image build -t flask_docker .
+docker run -p 5000:5000 -d flask_docker
+docker push sebaswn/flask-docker
+heroku container:push web --app surveynotes
+heroku container:release web --app surveynotes
+
+
+###########
+Mac
+
+#if you need to create virtual environment 
+python3 -m venv surveyNotes
+
+#to activate virtual environment 
+. surveyNotes/bin/activate
+
+#install flask in the environment
+pip install Flask
+pip install flask_sqlalchemy
+pip install pytz
+
+
+export FLASK_APP=surveyNotes.py
+
+flask run

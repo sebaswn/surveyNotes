@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+
+	<title>Survey Notes</title>
+
+	<link rel='icon' type='image/png' href='/images/icons/android-icon-192x192.png'>
+	<link rel='stylesheet' href='/global.css'>
+	<link rel='stylesheet' href='/build/bundle.css'>
+
+	<script defer src='/build/bundle.js'></script>
+	<link rel="manifest" href="/manifest.json">
+</head>
+
+<body>
+
+	<script>
+
+		if ("serviceWorker" in navigator) {
+			console.log("Attempting service worker registration");
+			window.addEventListener("load", () => {
+				navigator.serviceWorker.register("/service-worker.js").then((reg) => {
+					console.log("Service worker registered.", reg);
+				}).catch(err =>{
+					console.log("Registration failed: ", err)
+				});
+			});
+		}else{
+			console.log("Service worker not in navigator")
+		}
+
+
+	</script>
+</body>
+</html>
